@@ -1,0 +1,21 @@
+tr {
+    border-bottom: 1px solid #eee;
+  }
+  
+  td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  td button {
+    padding: 6px 12px;
+    background-color: #ff6b6b;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  td button:hover {
+    background-color: #ff5252;
+  }

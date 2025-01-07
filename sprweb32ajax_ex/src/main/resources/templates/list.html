@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>직원 정보</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+
+<script type="text/javascript">
+function func() {
+    const jikwonjik = $("select[name='jikwonjik']").val(); // 선택된 직급 가져오기
+    $("#showData").empty();
+    let totalPay = 0; // 연봉 누적 변수
+
+    $.ajax({
+        type: "GET",
+        url: "jikwonlist?jikwonjik=" + jikwonjik,
+        dataType: "json",
+        success: function(jikwondatas) {
+            console.log(jikwondatas); // 데이터 확인
+            
+            let count = 0;
+            let totalPay = 0;
+            let str = "<br/>* 근무 직원 *<br/>";
+            str += "<table border='1'>";
+            str += "<tr><th>사번</th><th>이름</th><th>직급</th><th>연봉</th><th>평가</th></tr>";
+
+            const jlist = jikwondatas.datas;
+            $(jlist).each(function(idx, obj) {
+                str += "<tr>";
+                str += "<td>" + obj["jikwonno"] + "</td>"; // 사번
+                str += "<td>" + obj["jikwonname"] + "</td>"; // 이름
+                str += "<td>" + obj["jikwonjik"] + "</td>"; // 직급
+                str += "<td>" + obj["jikwonpay"]  + "</td>"; // 연봉
+                str += "<td>" + obj["jikwonrating"] + "</td>"; // 평가
+                str += "</tr>";
+                // 연봉 총합과 직원 수 증가
+                totalPay += parseFloat(obj["jikwonpay"]); // 연봉을 숫자로 변환하여 총합에 추가
+                count++; // 직원 수 증가
+
+            });
+
+            // 평균 연봉 계산
+            const averagePay = (count > 0) ? (totalPay / count).toFixed(1) : 0;
+            str += "<tr><td colspan='5'>연봉 평균 : " + averagePay + " 원</td></tr>";
+            str += "</table>";
+            $("#showData").append(str);
+        },
+        error: function() {
+            $("#showData").text("에러");
+        }
+    });
+    return false; // 기본 폼 제출 방지
+}
+</script>
+</head>
+<body>
+    <form action="jikwonlist" method="get" onsubmit="return func();">
+        직원 직급:
+        <select name="jikwonjik">
+            <option value="" disabled selected>직급 선택</option>
+            <option th:each="jik : ${jlist}" 
+                    th:value="${jik.jikwonjik}" 
+                    th:text="${jik.jikwonjik}">
+            </option>
+        </select>
+        <button type="submit">확인</button>
+    </form>
+    <hr/>
+    <div id="showData"></div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>list.html</title>
+<script type="text/javascript">
+    function jikCheck() {
+        var searchValue = document.forms["searchForm"]["searchValue"].value;
+        if (searchValue == null || searchValue == "") {
+            alert("직급을 입력해 주세요.");
+            return false;
+        }
+        return true;
+    }
+</script>
+</head>
+<body>
+    <h3>직원 목록</h3>
+
+    <table border="1">
+        <tr>
+            <th>사번</th>
+            <th>직원명</th>
+            <th>성별</th>
+        </tr>
+        <th:block th:if="${datas != null}">
+        <tr th:each="data : ${datas}">
+            <td th:text="${data.jikwonno}"></td>    
+            <td th:text="${data.jikwonname}"></td>    
+            <td th:text="${data.jikwongen}"></td>
+        </tr>
+        </th:block>
+        <tr>
+            <td colspan="5" th:text="| 직원 수 : ${datas.size}명 |">직원 수</td>
+        </tr>
+    </table>
+</body>
+</html>

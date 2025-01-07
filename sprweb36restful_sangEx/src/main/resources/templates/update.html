@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>상품 자료 수정</title>
+<script type="text/javascript">
+function updateSangpum(){
+	//alert("u");
+	const code = document.querySelector("input[name='code']").value;
+	const sang = document.querySelector("input[name='sang']").value;
+	const su = document.querySelector("input[name='su']").value;
+	const dan = document.querySelector("input[name='dan']").value;
+	
+	fetch(`/api/sangpum`, {
+		method : "PUT",
+		headers : {
+			"Content-Type" : "application/json"
+		},
+		body : JSON.stringify({code:code, sang:sang, su:su, dan:dan})
+	})
+	.then(response => {
+		if(!response.ok) throw new Error("상품 수정 실패");
+		return response.json();
+	})
+	.then(data => {
+		if(data.isSuccess){
+			alert("상품 수정 성공");
+			location.href=`/sangpums/list`; // 수정 후 회원 목록 보기
+		}
+	})
+	.catch(error => {
+		console.log("오류 : ", error);
+	});
+}
+</script>
+</head>
+<body>
+	** 상품 자료 수정 ** <p/>
+<form onsubmit="event.preventDefault(); updateSangpum()">
+	번 호 : <span th:text="${data.code}"></span>
+	<input type="hidden" name="code" th:value="${data.code}"><br/>
+	이 름 : <input type="text" name="sang" th:value="${data.sang}"><br/>
+	수 량 : <input type="text" name="su" th:value="${data.su}"><br/>
+	단 가 : <input type="text" name="dan" th:value="${data.dan}"><br/>
+	<input type="submit" value="수정">
+</form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>list.html</title>
+<script type="text/javascript">
+    function jikCheck() {
+        var searchValue = document.forms["searchForm"]["searchValue"].value;
+        if (searchValue == null || searchValue == "") {
+            alert("직급을 입력해 주세요.");
+            return false;
+        }
+        return true;
+    }
+</script>
+</head>
+<body>
+    <h3>직원 목록</h3>
+
+    <form name="searchForm" method="post" th:action="@{search}" onsubmit="return jikCheck()">
+        직급 검색 : 
+        <input type="text" name="searchValue">
+        <label for="male">
+            <input type="radio" id="male" name="jikwongen" value="남">남
+        </label>
+        <label for="female">
+            <input type="radio" id="female" name="jikwongen" value="여">여
+        </label>
+        <input type="submit" value="확인">
+    </form>
+</body>
+</html>

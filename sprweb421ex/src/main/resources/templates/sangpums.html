@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/sangpums.css" />
+<script type="module" src="/js/showList.js"></script>
+</head>
+<body>
+    <div id="pageHeader">
+        <h2>상품 목록</h2>
+        <p><a th:href="@{/main}">되돌아가기</a></p>
+    </div>
+    
+    <div id="container"></div>
+    <!--
+        상품 리스트 하나의 구성 예상도
+
+        <div class="sangpums">
+            <img src="..." alt="...">
+            <ul class="info">
+                <li><span>상품명 : </span> <span>(상품명)</span> </li>
+                <li><span>수량 : </span> <span>(수량)</span> </li>
+                <li><span>단가 : </span> <span>(단가)</span> </li>
+                <li><span>상세설명 : </span> <span class="details">(상세설명)</span> </li>
+                <li><span>업로드 날짜: </span> <span>(업로드날짜)</span> </li>
+            </ul>
+        </div>
+    -->
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/uploadPage.css" >
+</head>
+<body>
+	<h3>상품 업로드하기</h3>
+	<p>
+		<a th:href="@{/main}">취소 후 메인으로</a>
+	</p>
+	
+	<form th:action="@{/main/upload}" method="post" enctype="multipart/form-data">
+		<ul>
+			<li>
+				상품명 : 
+				<input type="text" name="sang" required="required" />
+			</li>
+			<li>
+				사진 업로드 : 
+				<input type="file"  
+					name="file"
+					accept="image/*" 
+					required 
+				/>
+			</li>
+			<li>
+				수량 : 
+				<input type="number" name="su" required="required" />
+			</li>
+			<li>
+				단가 : 
+				<input type="number" name="dan" required="required" />
+			</li>
+			<li>
+				상세설명 : 
+				<textarea name="about" rows="5"></textarea>
+			</li>
+		</ul>
+		<button type="submit">등록</button>
+	</form>
+</body>
+</html>

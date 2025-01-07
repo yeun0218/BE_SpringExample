@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>고객 자료</h3>
+<table border="1">
+	<tr>
+		<td>고객번호</td><td>고객명</td><td>고객전화</td>
+	</tr>
+	<tr th:each="gogek:${gogeks}">
+		<td th:text="${gogek.gogekno}"></td>
+		<td th:text="${gogek.gogekname}"></td>
+		<td th:text="${gogek.gogektel}"></td>
+	</tr>
+	<tr>
+		<td colspan="3" th:text="|인원 수 : ${gogeks.size} 명|"></td>
+	</tr>
+</table>
+</body>
+</html>

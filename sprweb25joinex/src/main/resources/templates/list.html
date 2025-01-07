@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>관리 고객이 있는 직원</h3>
+<table border="1">
+	<tr>
+		<td>사번</td><td>직원명</td><td>직급</td>
+	</tr>
+	<tr th:each="jikwon:${jikwons}">
+		<td th:text="${jikwon.jikwonno}"></td>
+		<td>
+			<a th:href="@{/gogek(jikwonno=${jikwon.jikwonno})}" th:text="${jikwon.jikwonname}"></a>
+		</td>
+		<td th:text="${jikwon.jikwonjik}"></td>
+	</tr>
+</table>
+</body>
+</html>

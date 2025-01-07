@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>담당 직원의 관리 고객</title>
+</head>
+<body>
+<h2 th:text="|${jikwon.jikwonname} ${jikwon.jikwonjik}의 관리 고객|"></h2>
+<table border="1">
+	<tr>
+		<td>고객번호</td><td>고객명</td><td>성별</td><td>나이</td><td>고객전화</td>
+	</tr>
+	<tr th:each="gogek:${gogeks}">
+		<td th:text="${gogek.gogekno}"></td>
+		<td th:text="${gogek.gogekname}"></td>
+		<td th:text="${gogek.gender}"></td> 
+		<td th:text="|${gogek.age}세|"></td> 
+		<td th:text="${gogek.gogektel}"></td>
+	</tr>
+	<tr>
+		<td colspan="5" th:text="|인원 수 : ${gogeks.size} 명|"></td>
+	</tr>
+</table>
+<br>
+</body>
+</html>
